@@ -1,0 +1,111 @@
+.home-page-main {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  height: 100vh;
+}
+
+.home-page-left-contaner {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.home-page-right-contaner {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-page-upper {
+  border: 1px solid #dbdbdb;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.home-page-heading img {
+  width: 200px;
+}
+
+.home-page-heading p {
+  color: #737373;
+  max-width: 350px;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.home-page-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.home-page-input input {
+  width: 100%;
+  padding: 10px;
+  background: #fafafa;
+  border: 1px solid #dbdbdb;
+  outline: none;
+}
+
+.home-page-privacy-policy {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.home-page-privacy-policy p {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: #7d8085;
+}
+
+.home-page-sign-up {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.home-page-sign-up button {
+  background: #62b2f8;
+  width: 100%;
+  border: none;
+  padding: 10px;
+  font-family: sans;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.home-page-lower {
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  gap: 10px;
+}
+
+.home-page-lower span {
+  color: #2a95f6;
+  cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+}
