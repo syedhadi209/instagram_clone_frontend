@@ -7,17 +7,29 @@ import { PiPlusSquareBold } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { IoIosSettings } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineHeart } from "react-icons/ai";
+import { useNavigate } from "react-router";
+import { removeUser } from "../../store/slices/UserSlice";
+import { openModal } from "../../store/slices/ModalSlice";
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [toggle, setToggle] = useState(false);
   const profile_image = useSelector(
-    (state) => state.userSlice.data.profile_picture
+    (state) => state.userSlice.data?.profile_picture
   );
   console.log(profile_image);
 
   const handleToggle = () => {
     setToggle(!toggle);
+  };
+
+  const logoutHandler = () => {
+    localStorage.removeItem("token");
+    dispatch(removeUser());
+    navigate("/");
   };
   return (
     <>
@@ -35,12 +47,16 @@ const SideBar = () => {
               <BsSearch size={30} />
               Search
             </button>
-            <button>
+            <button onClick={() => dispatch(openModal())}>
               <PiPlusSquareBold size={30} />
               Create
             </button>
             <button>
-              <ProfileImage size={30} />
+              <AiOutlineHeart size={30} />
+              Notifications
+            </button>
+            <button>
+              <ProfileImage src={profile_image} size={30} />
               Profile
             </button>
           </div>
@@ -51,9 +67,14 @@ const SideBar = () => {
                   <IoIosSettings size={30} /> Settings
                 </button>
                 <button>
-                  <ProfileImage size={30} /> Profile
+                  <ProfileImage src={profile_image} size={30} /> Profile
                 </button>
-                <button style={{ background: "#3c3c3c" }}>Logout</button>
+                <button
+                  style={{ background: "#3c3c3c" }}
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </button>
               </div>
             )}
             <button onClick={handleToggle}>

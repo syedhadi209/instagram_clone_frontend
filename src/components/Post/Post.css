@@ -1,0 +1,80 @@
+.main-posts-area {
+  max-width: 500px;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.post-author {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  padding: 10px 5px;
+}
+
+.post-header button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.post-attachements {
+  max-height: 500px;
+  height: 500px;
+  position: relative;
+  border: 1px solid #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-actions {
+  padding: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.post-likes {
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.post-description {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.post-add-comment {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-add-comment input {
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #363636;
+}
+
+.post-add-comment button {
+  background: transparent;
+  color: #2993f3;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}

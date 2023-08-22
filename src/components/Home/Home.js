@@ -14,22 +14,21 @@ const Home = () => {
       navigate("/dashboard");
     } else {
       if (localStorage.getItem("token")) {
-        try {
-          const token = localStorage.getItem("token");
-          const headers = {
-            Authorization: `Bearer ${token}`,
-          };
-          axios
-            .get("http://127.0.0.1:8000/auth/get-user/", { headers })
-            .then((res) => {
-              dispatch(setUser(res.data));
-              navigate("/dashboard");
-            });
-        } catch (error) {
-          console.log("ERROR", error.message);
-          localStorage.removeItem("token");
-          navigate("/auth/signup");
-        }
+        const token = localStorage.getItem("token");
+        const headers = {
+          Authorization: `Bearer ${token}`,
+        };
+        axios
+          .get("http://127.0.0.1:8000/auth/get-user/", { headers })
+          .then((res) => {
+            dispatch(setUser(res.data));
+            navigate("/dashboard");
+          })
+          .catch((err) => {
+            console.log("ERROR", err.message);
+            localStorage.removeItem("token");
+            navigate("/auth/signup");
+          });
       } else {
         navigate("/auth/signup");
       }

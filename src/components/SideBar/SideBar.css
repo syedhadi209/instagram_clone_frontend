@@ -3,6 +3,9 @@
   max-width: 250px;
   border-right: 1px solid #363636;
   padding: 30px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .side-bar-header {
