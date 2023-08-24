@@ -1,7 +1,9 @@
 .main-posts-area {
   max-width: 500px;
   width: 100%;
-  margin-top: 50px;
+  margin: 50px 0;
+  border-bottom: 1px solid #363636;
+  position: relative;
 }
 
 .post-author {
@@ -66,7 +68,7 @@
   background: transparent;
   border: none;
   outline: none;
-  border-bottom: 1px solid #363636;
+  /* border-bottom: 1px solid #363636; */
 }
 
 .post-add-comment button {
@@ -77,4 +79,126 @@
   font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+}
+
+.toggle-box {
+  width: 50px;
+  height: 50px;
+  background: #262626;
+  position: absolute;
+  width: 160px;
+  height: 200px;
+  z-index: 10;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-box button {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #363636;
+  color: white;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.toggle-box button:first-child {
+  color: red;
+}
+
+.modal-input-delete {
+  position: relative;
+  height: 90%;
+}
+
+.modal-input-delete p {
+  position: absolute;
+  top: 40px;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.modal-input-delete .modal-buttons-delete {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-input-delete .modal-buttons-delete button {
+  padding: 10px;
+  border: none;
+  width: 100px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.modal-input-delete .modal-buttons-delete button:last-child {
+  background: red;
+  color: white;
+}
+
+.modal-input-edit {
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+}
+
+.post-urls-box {
+  position: relative;
+  width: 60%;
+  height: 500px;
+}
+
+.post-caption-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit-button-box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.edit-button-box button {
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.edit-button-box button:last-child {
+  background: #2993f3;
+  color: white;
+  font-weight: bold;
+}
+
+.post-caption-box textarea {
+  width: 100%;
+  background: #363636;
+  border: none;
+  height: 100px;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-weight: 900;
+  resize: none;
+  outline: none;
 }

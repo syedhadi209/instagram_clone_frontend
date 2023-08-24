@@ -2,7 +2,17 @@ import React from "react";
 import "./Stories.css";
 
 const Stories = () => {
-  return <div>Stories</div>;
+  return (
+    <div className="stories-main">
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+      <div className="story-circle"></div>
+    </div>
+  );
 };
 
 export default Stories;

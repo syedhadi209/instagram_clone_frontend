@@ -5,8 +5,8 @@ const ProfileImage = ({ src, size }) => {
     <div
       className="profile-image-main"
       style={{
-        maxWidth: "30px",
-        maxHeight: "30px",
+        maxWidth: "40px",
+        maxHeight: "40px",
         borderRadius: "50%",
         background: "grey",
         width: size,

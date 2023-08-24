@@ -4,8 +4,10 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: fit-content;
   padding-left: 100px;
+  min-height: 100vh;
+  gap: 20px;
 }
 
 .post-stories-container {
@@ -14,7 +16,7 @@
 }
 
 .modal-body {
-  height: 80vh;
+  height: 100%;
 }
 
 .modal-heading {
@@ -108,4 +110,12 @@ input[type="file"] {
   padding: 10px;
   margin-top: 10px;
   font-family: "Poppins", sans-serif;
+}
+
+.modal-input {
+  max-height: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

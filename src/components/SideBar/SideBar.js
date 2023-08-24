@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./SideBar.css";
 import instagramLogo from "../../assets/images/instagram_white.png";
 import { GoHomeFill } from "react-icons/go";
@@ -12,10 +12,12 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router";
 import { removeUser } from "../../store/slices/UserSlice";
 import { openModal } from "../../store/slices/ModalSlice";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const boxRef = useRef(null);
   const [toggle, setToggle] = useState(false);
   const profile_image = useSelector(
     (state) => state.userSlice.data?.profile_picture
@@ -31,6 +33,19 @@ const SideBar = () => {
     dispatch(removeUser());
     navigate("/");
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (boxRef.current && !boxRef.current.contains(event.target)) {
+        setToggle(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <>
       <div className="side-bar-main">
@@ -39,14 +54,18 @@ const SideBar = () => {
         </div>
         <div className="side-bar-content">
           <div className="side-bar-buttons">
-            <button>
-              <GoHomeFill size={30} />
-              Home
-            </button>
-            <button>
-              <BsSearch size={30} />
-              Search
-            </button>
+            <Link to={"Dashboard"}>
+              <button>
+                <GoHomeFill size={30} />
+                Home
+              </button>
+            </Link>
+            <Link to={"search"}>
+              <button>
+                <BsSearch size={30} />
+                Search
+              </button>
+            </Link>
             <button onClick={() => dispatch(openModal())}>
               <PiPlusSquareBold size={30} />
               Create
@@ -62,10 +81,12 @@ const SideBar = () => {
           </div>
           <div className="side-bar-options">
             {toggle && (
-              <div className="toggle-container">
-                <button>
-                  <IoIosSettings size={30} /> Settings
-                </button>
+              <div className="toggle-container" ref={boxRef}>
+                <Link to={"settings"}>
+                  <button>
+                    <IoIosSettings size={30} /> Settings
+                  </button>
+                </Link>
                 <button>
                   <ProfileImage src={profile_image} size={30} /> Profile
                 </button>
