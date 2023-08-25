@@ -5,12 +5,13 @@ const ProfileImage = ({ src, size }) => {
     <div
       className="profile-image-main"
       style={{
-        maxWidth: "40px",
-        maxHeight: "40px",
+        maxWidth: "200px",
+        maxHeight: "200px",
         borderRadius: "50%",
         background: "grey",
         width: size,
         height: size,
+        overflow: "hidden",
       }}
     >
       {src && <img src={src} alt="profile-circle" style={{ width: "100%" }} />}

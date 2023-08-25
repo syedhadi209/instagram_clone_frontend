@@ -76,10 +76,6 @@ const SideBar = () => {
               Create
             </button>
             <button>
-              <AiOutlineHeart size={30} />
-              Notifications
-            </button>
-            <button>
               <ProfileImage src={profile_image} size={30} />
               Profile
             </button>

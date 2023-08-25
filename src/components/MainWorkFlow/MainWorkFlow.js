@@ -92,8 +92,7 @@ const MainWorkFlow = () => {
               user: user,
               id: res.data.data?.id,
             };
-            console.log("posts", newPost, res);
-            setPosts((pre) => [...pre, newPost]);
+            setPosts((pre) => [newPost, ...pre]);
             setIsLoading(false);
             dispatch(closeModal());
             setFile(null);

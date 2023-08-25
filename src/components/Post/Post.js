@@ -35,6 +35,7 @@ const customStyles = {
 };
 
 const Post = ({ postData, removePost }) => {
+  axios.defaults.baseURL = "http://127.0.0.1:8000/";
   const navigate = useNavigate();
   const [toggleBox, setToggleBox] = useState(false);
   const currentUser = useSelector((state) => state.userSlice.data);
@@ -44,7 +45,6 @@ const Post = ({ postData, removePost }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [updatedCaption, setUpdatedCaption] = useState("");
   const [isLiked, setIsLiked] = useState(false);
-  const heartIconRef = useRef();
 
   const deletePost = (postId) => {
     setIsLoading(true);
@@ -60,6 +60,9 @@ const Post = ({ postData, removePost }) => {
         removePost(res.data.response);
         modalClose();
         setIsLoading(false);
+      })
+      .catch((err) => {
+        navigate("/");
       });
   };
 
@@ -132,12 +135,10 @@ const Post = ({ postData, removePost }) => {
       });
   };
 
-  function checkUser(likesList) {}
-
   useEffect(() => {
     let flag = false;
-    postData?.likes.map((like) => {
-      if (like.user == currentUser.id) {
+    postData?.likes?.map((like) => {
+      if (like?.user == currentUser.id) {
         flag = true;
       }
     });
@@ -247,7 +248,7 @@ const Post = ({ postData, removePost }) => {
             />
             <FaRegComment size={25} cursor={"pointer"} title="Comment" />
           </div>
-          <div className="post-likes">{postData?.likes.length} Likes</div>
+          <div className="post-likes">{postData?.likes?.length} Likes</div>
           <div className="post-description">
             <strong style={{ fontWeight: "bold", textTransform: "capitalize" }}>
               {postData?.user.username}
