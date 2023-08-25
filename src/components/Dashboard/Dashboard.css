@@ -1,0 +1,6 @@
+.dashboard-main {
+  background: black;
+  max-height: 100vh;
+  height: 100%;
+  display: flex;
+}
