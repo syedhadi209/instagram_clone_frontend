@@ -1,0 +1,121 @@
+.main-work-flow-container {
+  color: white;
+  background: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  padding-left: 100px;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.post-stories-container {
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-body {
+  height: 100%;
+}
+
+.modal-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  border-bottom: 1px solid #363636;
+  width: 100%;
+  padding: 10px 0 20px 0;
+  position: relative;
+}
+
+.modal-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  color: white;
+  text-align: center;
+  gap: 10px;
+}
+
+.modal-heading button {
+  background: transparent;
+  border: none;
+  outline: none;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.file-uploader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.custom-file-input {
+  display: inline-block;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+
+.custom-file-input:hover {
+  background-color: #2980b9;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.caption-box {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.caption-box label {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.caption-box textarea {
+  padding: 10px;
+  background: #363636;
+  border: none;
+  height: 100px;
+  width: 400px;
+  border-radius: 8px;
+  outline: none;
+  color: white;
+  margin-top: 20px;
+  font-size: 15px;
+  resize: none;
+}
+
+.caption-box button {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.modal-input {
+  max-height: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,53 @@
+.carousel {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  user-select: none;
+}
+
+.carousel-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.carousel .prev-button {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  background: black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.carousel .next-button {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  background: black;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
