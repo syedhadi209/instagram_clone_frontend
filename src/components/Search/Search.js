@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./Search.css";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import SearchBox from "../SearchBox/SearchBox";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState(null);
   const currentUser = useSelector((state) => state.userSlice.data);
-  const navigate = useNavigate();
 
   async function fetchResults() {
     const token = localStorage.getItem("token");
@@ -30,21 +30,9 @@ const Search = () => {
       });
   }
 
-  function checkFollowers(followersList) {
-    console.log(followersList);
-    let flag = false;
-    followersList.map((follower) => {
-      if (currentUser.id === follower.following) {
-        flag = true;
-        return 1;
-      }
-    });
-    return flag;
-  }
-
   useEffect(() => {
     fetchResults();
-    console.log(results);
+    // console.log("results", results);
   }, [searchQuery]);
   return (
     <div className="search-main">
@@ -56,18 +44,7 @@ const Search = () => {
       />
       <div className="searched-users">
         {results?.map((user, index) => {
-          return (
-            <div className="users-box" key={index}>
-              <Link to={`/profile/${user?.username}`}>{user?.username}</Link>
-              {user?.id != currentUser?.id ? (
-                <button>
-                  {checkFollowers(user?.followers) ? "Unfollow" : "Follow"}
-                </button>
-              ) : (
-                ""
-              )}
-            </div>
-          );
+          return <SearchBox user={user} key={index} />;
         })}
       </div>
     </div>

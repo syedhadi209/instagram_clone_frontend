@@ -66,7 +66,12 @@ const SideBar = () => {
                 Search
               </button>
             </Link>
-            <button onClick={() => dispatch(openModal())}>
+            <button
+              onClick={() => {
+                dispatch(openModal());
+                navigate("/");
+              }}
+            >
               <PiPlusSquareBold size={30} />
               Create
             </button>

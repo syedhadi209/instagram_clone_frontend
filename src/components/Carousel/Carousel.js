@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Carousal.css";
+import "./Carousel.css";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 
@@ -15,8 +15,6 @@ const Carousal = ({ items, edit }) => {
       (prevIndex) => (prevIndex - 1 + items.length) % items.length
     );
   };
-
-  console.log("items ", items);
   return (
     <div className="carousel">
       <button onClick={goToPreviousSlide} className="prev-button">

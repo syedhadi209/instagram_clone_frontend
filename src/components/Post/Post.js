@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Post.css";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { SlOptions } from "react-icons/sl";
-import Carousal from "../Carousal/Carousal";
+import Carousel from "../Carousel/Carousel";
 import { AiFillHeart } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { useSelector } from "react-redux";
@@ -179,7 +179,7 @@ const Post = ({ postData, removePost }) => {
               </div>
               <div className="modal-input-edit">
                 <div className="post-urls-box">
-                  <Carousal items={postData.attachements} edit={true} />
+                  <Carousel items={postData.attachements} edit={true} />
                 </div>
                 <div className="post-caption-box">
                   <textarea
@@ -235,7 +235,7 @@ const Post = ({ postData, removePost }) => {
             </button>
           </div>
           <div className="post-attachements">
-            <Carousal items={postData?.attachements} edit={false} />
+            <Carousel items={postData?.attachements} edit={false} />
           </div>
           <div className="post-actions">
             <AiFillHeart
