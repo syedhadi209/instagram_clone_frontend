@@ -1,0 +1,13 @@
+.stories-main {
+  display: flex;
+  margin: 20px 0;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.story-circle {
+  height: 60px;
+  width: 60px;
+  background: grey;
+  border-radius: 50%;
+}

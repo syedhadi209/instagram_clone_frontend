@@ -78,3 +78,14 @@
   font-weight: bold;
   user-select: none;
 }
+
+.home-page-error {
+  width: 100%;
+  background: #f6635c;
+  padding: 10px 0;
+  margin-top: 20px;
+  border-radius: 8px;
+  color: white;
+  transition: 0.3s ease;
+  text-transform: capitalize;
+}
