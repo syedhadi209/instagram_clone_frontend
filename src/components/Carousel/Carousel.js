@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Carousal.css";
+import "./Carousel.css";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
-const Carousal = ({ items }) => {
+const Carousel = ({ items }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNextSlide = () => {
@@ -33,4 +33,4 @@ const Carousal = ({ items }) => {
   );
 };
 
-export default Carousal;
+export default Carousel;

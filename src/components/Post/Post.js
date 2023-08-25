@@ -2,7 +2,7 @@ import React from "react";
 import "./Post.css";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { SlOptions } from "react-icons/sl";
-import Carousal from "../Carousal/Carousal";
+import Carousel from "../Carousel/Carousel";
 import ins from "../../assets/images/Instagram_logo.png";
 import black from "../../assets/images/instagram_white.png";
 import ban from "../../assets/images/banner.png";
@@ -25,7 +25,7 @@ const Post = () => {
             </button>
           </div>
           <div className="post-attachements">
-            <Carousal items={items} />
+            <Carousel items={items} />
           </div>
           <div className="post-actions">
             <AiOutlineHeart size={25} cursor={"pointer"} title="Like Post" />
@@ -53,7 +53,7 @@ const Post = () => {
             </button>
           </div>
           <div className="post-attachements">
-            <Carousal items={items} />
+            <Carousel items={items} />
           </div>
           <div className="post-actions">
             <AiOutlineHeart size={25} cursor={"pointer"} title="Like Post" />
