@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Search.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import SearchBox from "../SearchBox/SearchBox";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState(null);
-  const currentUser = useSelector((state) => state.userSlice.data);
-
   async function fetchResults() {
     const token = localStorage.getItem("token");
     const data = {
@@ -32,7 +28,6 @@ const Search = () => {
 
   useEffect(() => {
     fetchResults();
-    // console.log("results", results);
   }, [searchQuery]);
   return (
     <div className="search-main">

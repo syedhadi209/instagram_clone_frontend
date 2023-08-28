@@ -45,6 +45,7 @@ const SearchBox = ({ user }) => {
         }
       )
       .then((res) => {
+        console.log(res.data);
         if (!res.data.response) {
           removeFollower();
         } else {

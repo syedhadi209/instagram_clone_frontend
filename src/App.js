@@ -8,6 +8,7 @@ import SideBar from "./components/SideBar/SideBar";
 import Settings from "./components/Settings/Settings";
 import Search from "./components/Search/Search";
 import Profile from "./components/Profile/Profile";
+import Notifications from "./components/Notifications/Notifications";
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile/:username" element={<Profile />} />
+            <Route path="/notifications" element={<Notifications />} />
           </Routes>
         </div>
       </div>

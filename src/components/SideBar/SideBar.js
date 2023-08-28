@@ -76,6 +76,12 @@ const SideBar = () => {
               <PiPlusSquareBold size={30} />
               Create
             </button>
+            <Link to={"notifications"}>
+              <button>
+                <AiOutlineHeart size={30} />
+                Notifications
+              </button>
+            </Link>
             <Link to={`/profile/${currentUser?.username}`}>
               <button>
                 <ProfileImage src={profile_image} size={30} />

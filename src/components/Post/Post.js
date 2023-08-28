@@ -48,12 +48,13 @@ const Post = ({ postData, removePost }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [comment, setComment] = useState("");
   const [commentToggle, setCommentToggle] = useState(false);
+  const [data, setData] = useState(postData);
 
   const deletePost = (postId) => {
     setIsLoading(true);
     const token = localStorage.getItem("token");
     axios
-      .delete(`http://127.0.0.1:8000/posts/delete-post/${postId}`, {
+      .delete(`http://127.0.0.1:8000/posts/delete-post/${postId}/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -152,12 +153,12 @@ const Post = ({ postData, removePost }) => {
       )
       .then((res) => {
         console.log(res.data);
-        setComment(null);
         const data = res.data.response;
         postData.comments.unshift(data);
+        setComment("");
       })
       .catch((err) => {
-        navigate("/");
+        navigate("/dashboard");
       });
   };
 
@@ -165,20 +166,15 @@ const Post = ({ postData, removePost }) => {
     await axios
       .delete(`http://127.0.0.1:8000/comment/delete-comment/${commentId}/`)
       .then((res) => {
-        let ind = null;
-        postData.comments.forEach((ele, index) => {
-          if (ele.id === commentId) {
-            ind = index;
-          }
-        });
-        console.log(postData.comments.splice(ind, 1));
+        setData((prev) => ({
+          ...prev,
+          comments: prev.comments.filter((comment) => comment.id !== commentId),
+        }));
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  console.log(postData);
 
   useEffect(() => {
     let flag = false;
@@ -189,7 +185,6 @@ const Post = ({ postData, removePost }) => {
     });
     setIsLiked(flag);
   }, [isLiked]);
-
   return (
     <>
       <ReactModal
@@ -308,7 +303,7 @@ const Post = ({ postData, removePost }) => {
           </div>
           {commentToggle && (
             <div className="comments-main">
-              {postData.comments.map((comment, index) => {
+              {data.comments.map((comment, index) => {
                 return (
                   <CommentBox
                     commentData={comment}
