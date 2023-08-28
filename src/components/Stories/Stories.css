@@ -1,0 +1,21 @@
+.stories-main {
+  display: flex;
+  margin: 20px 0;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.story-circle {
+  height: 60px;
+  width: 60px;
+  background: black;
+  border: 2px solid grey;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.stories-main .story-circle:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

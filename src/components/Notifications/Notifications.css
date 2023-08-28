@@ -1,0 +1,28 @@
+.notifications-main {
+  background: black;
+  padding-left: 300px;
+  color: white;
+  min-height: 100vh;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.notification-box {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  background: #363636;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.notification-box a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
