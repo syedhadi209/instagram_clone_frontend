@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { SlOptions } from "react-icons/sl";
@@ -10,6 +10,7 @@ import ReactModal from "react-modal";
 import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router";
+import CommentBox from "../CommentBox/CommentBox";
 
 const customStyles = {
   overlay: {
@@ -45,6 +46,8 @@ const Post = ({ postData, removePost }) => {
   const [isDelete, setIsDelete] = useState(false);
   const [updatedCaption, setUpdatedCaption] = useState("");
   const [isLiked, setIsLiked] = useState(false);
+  const [comment, setComment] = useState("");
+  const [commentToggle, setCommentToggle] = useState(false);
 
   const deletePost = (postId) => {
     setIsLoading(true);
@@ -135,10 +138,52 @@ const Post = ({ postData, removePost }) => {
       });
   };
 
+  const addComment = async () => {
+    const token = localStorage.getItem("token");
+    await axios
+      .post(
+        `http://127.0.0.1:8000/comment/add-comment/${postData.id}/`,
+        { content: comment },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        setComment(null);
+        const data = res.data.response;
+        postData.comments.unshift(data);
+      })
+      .catch((err) => {
+        navigate("/");
+      });
+  };
+
+  const deleteComment = async (commentId) => {
+    await axios
+      .delete(`http://127.0.0.1:8000/comment/delete-comment/${commentId}/`)
+      .then((res) => {
+        let ind = null;
+        postData.comments.forEach((ele, index) => {
+          if (ele.id === commentId) {
+            ind = index;
+          }
+        });
+        console.log(postData.comments.splice(ind, 1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(postData);
+
   useEffect(() => {
     let flag = false;
     postData?.likes?.map((like) => {
-      if (like?.user == currentUser.id) {
+      if (like?.user === currentUser.id) {
         flag = true;
       }
     });
@@ -255,10 +300,36 @@ const Post = ({ postData, removePost }) => {
             </strong>
             <p style={{ fontWeight: "300" }}>{postData?.description}</p>
           </div>
-          <div className="post-comments">post comments</div>
+          <div
+            className="post-comments"
+            onClick={() => setCommentToggle(!commentToggle)}
+          >
+            View all comments
+          </div>
+          {commentToggle && (
+            <div className="comments-main">
+              {postData.comments.map((comment, index) => {
+                return (
+                  <CommentBox
+                    commentData={comment}
+                    deleteComment={deleteComment}
+                    setComment={setComment}
+                    key={index}
+                    isOwner={postData.user.id === currentUser.id}
+                  />
+                );
+              })}
+            </div>
+          )}
           <div className="post-add-comment">
-            <input type="text" placeholder="Add a Comment..." />
-            <button>Post</button>
+            <input
+              type="text"
+              placeholder="Add a Comment..."
+              onChange={(e) => setComment(e.target.value)}
+            />
+            <button disabled={comment?.length === 0} onClick={addComment}>
+              Post
+            </button>
           </div>
         </div>
       </div>

@@ -63,7 +63,7 @@ const Settings = () => {
         <label>Email</label>
         <input type="text" value={currentUser?.email} />
       </div>
-      <div class="file-uploader">
+      <div className="file-uploader">
         <label>Profile Picture</label>
         <input
           type="file"
@@ -71,7 +71,7 @@ const Settings = () => {
           class="file-input"
           onChange={(e) => setProfilePicture(e.target.files[0])}
         />
-        <label for="fileInput" class="file-label">
+        <label htmlFor="fileInput" className="file-label">
           <span>Choose a file</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

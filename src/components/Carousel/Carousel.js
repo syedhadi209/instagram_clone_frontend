@@ -17,9 +17,11 @@ const Carousal = ({ items, edit }) => {
   };
   return (
     <div className="carousel">
-      <button onClick={goToPreviousSlide} className="prev-button">
-        <MdArrowBackIos size={15} color="white" />
-      </button>
+      {items.length > 1 && (
+        <button onClick={goToPreviousSlide} className="prev-button">
+          <MdArrowBackIos size={15} color="white" />
+        </button>
+      )}
       <div className="carousel-content">
         {edit && (
           <AiFillDelete
@@ -39,9 +41,11 @@ const Carousal = ({ items, edit }) => {
           alt="carousal"
         />
       </div>
-      <button onClick={goToNextSlide} className="next-button">
-        <MdArrowForwardIos size={15} color="white" style={{ zIndex: "0" }} />
-      </button>
+      {items.length > 1 && (
+        <button onClick={goToNextSlide} className="next-button">
+          <MdArrowForwardIos size={15} color="white" style={{ zIndex: "0" }} />
+        </button>
+      )}
     </div>
   );
 };

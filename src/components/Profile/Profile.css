@@ -4,4 +4,45 @@
   padding-left: 300px;
   min-height: 100vh;
   height: fit-content;
+  padding-top: 100px;
+  padding-right: 50px;
+}
+
+.user-profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-profile-header-left {
+  display: flex;
+  gap: 30px;
+}
+
+.user-profile-header-right a {
+  color: white;
+}
+
+.user-info h2 {
+  margin-top: 20px;
+  font-size: 40px;
+  text-transform: capitalize;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+  user-select: none;
+}
+
+.user-info p {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+.user-profile-posts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  gap: 20px;
 }

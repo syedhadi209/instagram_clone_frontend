@@ -19,11 +19,10 @@ const SideBar = () => {
   const dispatch = useDispatch();
   const boxRef = useRef(null);
   const [toggle, setToggle] = useState(false);
+  const currentUser = useSelector((state) => state.userSlice.data);
   const profile_image = useSelector(
     (state) => state.userSlice.data?.profile_picture
   );
-  console.log(profile_image);
-
   const handleToggle = () => {
     setToggle(!toggle);
   };
@@ -35,12 +34,14 @@ const SideBar = () => {
   };
 
   useEffect(() => {
+    if (!currentUser) {
+      navigate("/");
+    }
     const handleClickOutside = (event) => {
       if (boxRef.current && !boxRef.current.contains(event.target)) {
         setToggle(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -75,10 +76,12 @@ const SideBar = () => {
               <PiPlusSquareBold size={30} />
               Create
             </button>
-            <button>
-              <ProfileImage src={profile_image} size={30} />
-              Profile
-            </button>
+            <Link to={`/profile/${currentUser?.username}`}>
+              <button>
+                <ProfileImage src={profile_image} size={30} />
+                Profile
+              </button>
+            </Link>
           </div>
           <div className="side-bar-options">
             {toggle && (
