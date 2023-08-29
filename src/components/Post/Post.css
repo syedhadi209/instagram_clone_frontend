@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.main-posts-area a {
+  text-decoration: none;
+  color: white;
+}
+
 .post-author {
   display: flex;
   gap: 10px;

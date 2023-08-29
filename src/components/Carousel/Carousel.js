@@ -17,7 +17,7 @@ const Carousal = ({ items, edit }) => {
   };
   return (
     <div className="carousel">
-      {items.length > 1 && (
+      {items?.length > 1 && (
         <button onClick={goToPreviousSlide} className="prev-button">
           <MdArrowBackIos size={15} color="white" />
         </button>
@@ -36,12 +36,12 @@ const Carousal = ({ items, edit }) => {
           />
         )}
         <img
-          src={items[currentIndex]?.url}
+          src={items[currentIndex].url}
           style={{ width: "100%", height: "100%" }}
           alt="carousal"
         />
       </div>
-      {items.length > 1 && (
+      {items?.length > 1 && (
         <button onClick={goToNextSlide} className="next-button">
           <MdArrowForwardIos size={15} color="white" style={{ zIndex: "0" }} />
         </button>

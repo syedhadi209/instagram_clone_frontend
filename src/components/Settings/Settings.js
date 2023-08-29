@@ -4,17 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfileImage from "../ProfileImage/ProfileImage";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { setProfilePic } from "../../store/slices/UserSlice";
+import {
+  setProfilePic,
+  updateEmail,
+  updateUsername,
+} from "../../store/slices/UserSlice";
 import { RotatingLines } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Settings = () => {
+  const [updatedUsername, setUpdatedUsername] = useState("");
+  const [updatedEmail, setUpdatedEmail] = useState("");
   const [profilePicture, setProfilePicture] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const currentUser = useSelector((state) => state.userSlice.data);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  async function updateProfile() {
+  async function updateProfilePicture() {
     setIsLoading(true);
     const token = localStorage.getItem("token");
     const url = "https://api.cloudinary.com/v1_1/djbu7u6rk/image/upload";
@@ -46,6 +54,48 @@ const Settings = () => {
     });
   }
 
+  function updateProfile() {
+    const token = localStorage.getItem("token");
+    const data = {
+      username: updatedUsername ? updatedUsername : currentUser.username,
+      email: updatedEmail ? updatedEmail : currentUser.email,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/auth/update-profile/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.status) {
+          dispatch(updateUsername(updatedUsername));
+          dispatch(updateEmail(updatedEmail));
+          toast.success(res.data.response, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        } else {
+          toast.error(res.data.response, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
+  }
+
   useEffect(() => {
     if (!currentUser) {
       navigate("/");
@@ -53,15 +103,35 @@ const Settings = () => {
   }, []);
   return (
     <div className="settings-main">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <h2>settings</h2>
       <ProfileImage size={200} src={currentUser?.profile_picture} />
       <div className="settings-input-fields">
         <label>Username</label>
-        <input type="text" value={currentUser?.username} />
+        <input
+          type="text"
+          defaultValue={currentUser?.username}
+          onChange={(e) => setUpdatedUsername(e.target.value)}
+        />
       </div>
       <div className="settings-input-fields">
         <label>Email</label>
-        <input type="text" value={currentUser?.email} />
+        <input
+          type="text"
+          defaultValue={currentUser?.email}
+          onChange={(e) => setUpdatedEmail(e.target.value)}
+        />
       </div>
       <div className="file-uploader">
         <label>Profile Picture</label>
@@ -84,7 +154,7 @@ const Settings = () => {
           </svg>
         </label>
         {profilePicture && (
-          <button onClick={updateProfile}>
+          <button onClick={updateProfilePicture}>
             {isLoading ? (
               <RotatingLines width="15" strokeColor="white" />
             ) : (
@@ -92,6 +162,9 @@ const Settings = () => {
             )}
           </button>
         )}
+      </div>
+      <div className="settings-submit-button">
+        <button onClick={updateProfile}>Submit</button>
       </div>
     </div>
   );

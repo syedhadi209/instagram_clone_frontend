@@ -23,6 +23,18 @@
   color: white;
 }
 
+.user-profile-header-right button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: blue;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+}
+
 .user-info h2 {
   margin-top: 20px;
   font-size: 40px;

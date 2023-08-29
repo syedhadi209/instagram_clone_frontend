@@ -77,3 +77,23 @@
   cursor: pointer;
   width: 200px;
 }
+.settings-submit-button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 100px;
+}
+
+.settings-submit-button button {
+  width: 100px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background: #3498db;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}

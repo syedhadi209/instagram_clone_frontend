@@ -9,6 +9,10 @@
   background: black;
 }
 
+.side-bar-main a {
+  text-decoration: none;
+}
+
 .side-bar-header {
   width: 100%;
 }

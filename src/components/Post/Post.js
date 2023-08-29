@@ -11,6 +11,7 @@ import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router";
 import CommentBox from "../CommentBox/CommentBox";
+import { Link } from "react-router-dom";
 
 const customStyles = {
   overlay: {
@@ -247,18 +248,20 @@ const Post = ({ postData, removePost }) => {
       <div className="main-posts-area">
         <div className="main-post-body">
           <div className="post-header">
-            <div className="post-author">
-              <ProfileImage src={postData?.user.profile_picture} size={30} />
-              <p
-                style={{
-                  textTransform: "capitalize",
-                  fontFamily: "Poppins",
-                  fontWeight: "700",
-                }}
-              >
-                {postData?.user.username}
-              </p>
-            </div>
+            <Link to={`/profile/${postData?.user.username}`}>
+              <div className="post-author">
+                <ProfileImage src={postData?.user.profile_picture} size={30} />
+                <p
+                  style={{
+                    textTransform: "capitalize",
+                    fontFamily: "Poppins",
+                    fontWeight: "700",
+                  }}
+                >
+                  {postData?.user.username}
+                </p>
+              </div>
+            </Link>
             <button>
               {canEditOrDelete && (
                 <SlOptions

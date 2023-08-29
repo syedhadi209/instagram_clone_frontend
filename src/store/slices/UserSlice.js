@@ -13,8 +13,20 @@ const userSlice = createSlice({
     setProfilePic(state, action) {
       state.data.profile_picture = action.payload;
     },
+    updateUsername(state, action) {
+      state.data.username = action.payload;
+    },
+    updateEmail(state, action) {
+      state.data.email = action.payload;
+    },
   },
 });
 
 export { userSlice };
-export const { setUser, removeUser, setProfilePic } = userSlice.actions;
+export const {
+  setUser,
+  removeUser,
+  setProfilePic,
+  updateUsername,
+  updateEmail,
+} = userSlice.actions;
