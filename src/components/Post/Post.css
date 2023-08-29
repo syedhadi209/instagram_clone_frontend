@@ -1,0 +1,209 @@
+.main-posts-area {
+  max-width: 500px;
+  width: 100%;
+  margin: 50px 0;
+  border-bottom: 1px solid #363636;
+  position: relative;
+}
+
+.main-posts-area a {
+  text-decoration: none;
+  color: white;
+}
+
+.post-author {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
+  padding: 10px 5px;
+}
+
+.post-header button {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.post-attachements {
+  max-height: 500px;
+  height: 500px;
+  position: relative;
+  border: 1px solid #363636;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-actions {
+  padding: 10px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.post-likes {
+  padding: 10px 0;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.post-description {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.post-add-comment {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.post-add-comment input {
+  width: 100%;
+  padding: 15px 0;
+  color: white;
+  background: transparent;
+  border: none;
+  outline: none;
+  /* border-bottom: 1px solid #363636; */
+}
+
+.post-add-comment button {
+  background: transparent;
+  color: #2993f3;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.toggle-box {
+  width: 50px;
+  height: 50px;
+  background: #262626;
+  position: absolute;
+  width: 160px;
+  height: 200px;
+  z-index: 10;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.toggle-box button {
+  width: 100%;
+  padding: 10px;
+  border-bottom: 1px solid #363636;
+  color: white;
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+
+.toggle-box button:first-child {
+  color: red;
+}
+
+.modal-input-delete {
+  position: relative;
+  height: 90%;
+}
+
+.modal-input-delete p {
+  position: absolute;
+  top: 40px;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+}
+
+.modal-input-delete .modal-buttons-delete {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-input-delete .modal-buttons-delete button {
+  padding: 10px;
+  border: none;
+  width: 100px;
+  font-family: "Poppins", sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.modal-input-delete .modal-buttons-delete button:last-child {
+  background: red;
+  color: white;
+}
+
+.modal-input-edit {
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+}
+
+.post-urls-box {
+  position: relative;
+  width: 60%;
+  height: 500px;
+}
+
+.post-caption-box {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit-button-box {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.edit-button-box button {
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+
+.edit-button-box button:last-child {
+  background: #2993f3;
+  color: white;
+  font-weight: bold;
+}
+
+.post-caption-box textarea {
+  width: 100%;
+  background: #363636;
+  border: none;
+  height: 100px;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: "Poppins", sans-serif;
+  text-transform: capitalize;
+  font-weight: 900;
+  resize: none;
+  outline: none;
+}
