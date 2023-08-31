@@ -4,7 +4,8 @@ import bannerImage from "../../assets/images/banner.png";
 import instagramLogo from "../../assets/images/Instagram_logo.png";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import FadeLoader from "react-spinners/FadeLoader";
+import { ToastContainer, toast } from "react-toastify";
+import { RotatingLines } from "react-loader-spinner";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -26,21 +27,49 @@ const SignUp = () => {
         email: email,
         password: password,
       };
-      axios.post(url, data).then((res) => {
-        if (res.data.error) {
-          setError(res.data.error);
+      axios
+        .post(url, data)
+        .then((res) => {
+          if (res.data.error) {
+            setError(res.data.error);
+            setIsLoading(false);
+          } else {
+            setIsLoading(false);
+            console.log("HERE");
+            navigate("/auth/login");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
           setIsLoading(false);
-        } else {
-          setIsLoading(false);
-          console.log("HERE");
-          navigate("/auth/login");
-        }
-      });
+        });
     }
   };
   return (
     <>
       <div className="home-page-main">
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <div className="home-page-left-contaner">
           <img src={bannerImage} alt="banner" />
         </div>
@@ -53,7 +82,7 @@ const SignUp = () => {
             {error && <div className="home-page-error">{error}</div>}
             <div className="home-page-input">
               <input
-                type="text"
+                type="email"
                 placeholder="Email"
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -94,10 +123,13 @@ const SignUp = () => {
               </p>
             </div>
             <div className="home-page-sign-up">
-              <button onClick={submiHandler}>Sign up</button>
-              {isLoading && (
-                <FadeLoader loading={isLoading} color="#62b2f8" size={5} />
-              )}
+              <button onClick={submiHandler}>
+                {isLoading ? (
+                  <RotatingLines width="15" strokeColor="white" />
+                ) : (
+                  "Sign up"
+                )}
+              </button>
             </div>
           </div>
           <div className="home-page-lower">

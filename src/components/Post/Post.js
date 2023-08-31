@@ -37,6 +37,7 @@ const customStyles = {
 };
 
 const Post = ({ postData, removePost }) => {
+  // console.log(postData);
   axios.defaults.baseURL = "http://127.0.0.1:8000/";
   const navigate = useNavigate();
   const [toggleBox, setToggleBox] = useState(false);
@@ -103,7 +104,7 @@ const Post = ({ postData, removePost }) => {
         if (!res.data.response) {
           setIsLiked(false);
           const userToRemove = currentUser.id;
-          postData.likes = postData.likes.filter(
+          postData.likes = postData?.likes?.filter(
             (obj) => obj.user !== userToRemove
           );
         } else {
@@ -153,12 +154,14 @@ const Post = ({ postData, removePost }) => {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        const data = res.data.response;
-        postData.comments.unshift(data);
+        setData((prevData) => ({
+          ...prevData,
+          comments: [res.data.response, ...prevData.comments],
+        }));
         setComment("");
       })
       .catch((err) => {
+        console.log(err);
         navigate("/dashboard");
       });
   };
@@ -176,7 +179,6 @@ const Post = ({ postData, removePost }) => {
         console.log(err);
       });
   };
-
   useEffect(() => {
     let flag = false;
     postData?.likes?.map((like) => {
@@ -185,7 +187,7 @@ const Post = ({ postData, removePost }) => {
       }
     });
     setIsLiked(flag);
-  }, [isLiked]);
+  }, [isLiked, postData.comments, removePost]);
   return (
     <>
       <ReactModal
@@ -289,7 +291,12 @@ const Post = ({ postData, removePost }) => {
               onClick={() => likePost(postData?.id)}
               color={isLiked ? "red" : ""}
             />
-            <FaRegComment size={25} cursor={"pointer"} title="Comment" />
+            <FaRegComment
+              size={25}
+              cursor={"pointer"}
+              title="Comment"
+              onClick={() => setCommentToggle(!commentToggle)}
+            />
           </div>
           <div className="post-likes">{postData?.likes?.length} Likes</div>
           <div className="post-description">
@@ -306,17 +313,19 @@ const Post = ({ postData, removePost }) => {
           </div>
           {commentToggle && (
             <div className="comments-main">
-              {data.comments.map((comment, index) => {
-                return (
-                  <CommentBox
-                    commentData={comment}
-                    deleteComment={deleteComment}
-                    setComment={setComment}
-                    key={index}
-                    isOwner={postData.user.id === currentUser.id}
-                  />
-                );
-              })}
+              {data.comments.length > 0
+                ? data.comments.map((comment, index) => {
+                    return (
+                      <CommentBox
+                        commentData={comment}
+                        deleteComment={deleteComment}
+                        setComment={setComment}
+                        key={index}
+                        isOwner={postData.user.id === currentUser.id}
+                      />
+                    );
+                  })
+                : "No comments"}
             </div>
           )}
           <div className="post-add-comment">
@@ -324,6 +333,7 @@ const Post = ({ postData, removePost }) => {
               type="text"
               placeholder="Add a Comment..."
               onChange={(e) => setComment(e.target.value)}
+              defaultValue={comment}
             />
             <button disabled={comment?.length === 0} onClick={addComment}>
               Post

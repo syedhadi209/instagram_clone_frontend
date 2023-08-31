@@ -30,6 +30,8 @@ const Notifications = () => {
       .post(`http://127.0.0.1:8000/followers/accept-request/${id}/`)
       .then((res) => {
         console.log(res.data);
+        const button = document.getElementById(`accept-button-${id}`);
+        button.innerHTML = "Accepted";
       })
       .catch((err) => {
         console.log(err.message);
@@ -48,7 +50,10 @@ const Notifications = () => {
               <Link to={`/profile/${request?.user_id.username}`}>
                 {request?.user_id.username}
               </Link>
-              <button onClick={() => acceptRequest(request.id)}>
+              <button
+                onClick={() => acceptRequest(request.id)}
+                id={`accept-button-${request.id}`}
+              >
                 {request.accepted ? "Accepted" : "Accept"}
               </button>
             </div>

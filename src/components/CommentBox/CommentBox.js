@@ -8,7 +8,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 const CommentBox = ({ commentData, deleteComment, setComment, isOwner }) => {
-  console.log(commentData);
   const [isEdit, setIsEdit] = useState(false);
   const [updatedContent, setUpdatedContent] = useState("");
   const currentUser = useSelector((state) => state.userSlice.data);

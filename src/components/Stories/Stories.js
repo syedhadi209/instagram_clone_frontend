@@ -6,6 +6,7 @@ import axios from "axios";
 import { RotatingLines } from "react-loader-spinner";
 import Carousal from "../Carousel/Carousel";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const customStyles = {
   overlay: {
@@ -31,6 +32,7 @@ const customStyles = {
 };
 
 const Stories = () => {
+  const navigate = useNavigate();
   const currentUser = useSelector((state) => state.userSlice.data);
   const [isModal, setIsModal] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -44,9 +46,7 @@ const Stories = () => {
   };
 
   const openModal = (story) => {
-    console.log(story);
     if (story) {
-      console.log("HERE1");
       setOpenedStory(story);
       setIsAddStory(false);
       setIsModal(true);
@@ -62,9 +62,17 @@ const Stories = () => {
   };
 
   const replaceObjectById = (objectId, newObject) => {
-    setStories((prevData) =>
-      prevData.map((item) => (item.id === objectId ? newObject : item))
-    );
+    setStories((prevData) => {
+      const index = prevData.findIndex((item) => item.id === objectId);
+
+      if (index !== -1) {
+        // If object with given ID exists, replace it
+        return prevData.map((item, i) => (i === index ? newObject : item));
+      } else {
+        // If object with given ID doesn't exist, add newObject at the start
+        return [newObject, ...prevData];
+      }
+    });
   };
 
   const addStory = async () => {
@@ -76,7 +84,6 @@ const Stories = () => {
     formData.append("upload_preset", "instagram_clone");
     formData.append("cloud_name", "djbu7u6rk");
     await axios.post(url, formData).then((res) => {
-      // console.log(res.data.url);
       axios
         .post(
           "http://127.0.0.1:8000/stories/add-story/",
@@ -88,14 +95,14 @@ const Stories = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
           replaceObjectById(res.data.id, res.data);
           setIsLoading(false);
+          setSelectedFile(null);
           modalClose();
         })
         .catch((err) => {
-          console.log(err);
           setIsLoading(false);
+          navigate("/dashboard");
         });
     });
   };
@@ -109,11 +116,11 @@ const Stories = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setStories(res.data);
       })
       .catch((err) => {
         console.log(err.message);
+        navigate("/dashboard");
       });
   }
 

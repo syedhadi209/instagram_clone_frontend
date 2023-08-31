@@ -25,11 +25,13 @@ const SearchBox = ({ user }) => {
   }
 
   function checkFollow() {
+    let flag = false;
     user.followers.forEach((element) => {
-      if (element.user_id === currentUser.id) {
-        setIsFollower(true);
+      if (element.user_id.id === currentUser.id) {
+        flag = true;
       }
     });
+    setIsFollower(flag);
   }
 
   async function handleFollow(followingId) {
@@ -60,11 +62,16 @@ const SearchBox = ({ user }) => {
   useEffect(() => {
     checkFollow();
   }, []);
+
+  useEffect(() => {}, [isFollower]);
   return (
     <div className="users-box">
       <Link to={`/profile/${user?.username}`}>{user?.username}</Link>
       {user?.id !== currentUser?.id ? (
-        <button onClick={() => handleFollow(user.id)}>
+        <button
+          onClick={() => handleFollow(user.id)}
+          id={`follow-button-search-${user?.id}`}
+        >
           {isFollower ? "Unfollow" : "Follow"}
         </button>
       ) : (

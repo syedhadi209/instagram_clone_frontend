@@ -97,6 +97,8 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  top: 40px;
+  right: 0;
 }
 
 .toggle-box button {
