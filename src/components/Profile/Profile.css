@@ -1,0 +1,7 @@
+.user-profile-main {
+  background: black;
+  color: white;
+  padding-left: 300px;
+  min-height: 100vh;
+  height: fit-content;
+}
